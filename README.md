@@ -40,6 +40,12 @@ Se tiene pensado crear una base de datos con la siguiente informacion:
 
 **- Reaccion:** En la tabla de Reaccion tendremo el tipo de reaccion y que post es el que tiene es reaccion.
 
+
+
+## Diagrama Entidad Relacion
+
+![Diagrama](./assets/images/diagrama.png)
+
 ## EndPoints
 
 algunos de los endpoints que tenemos pensados utilizar:
