@@ -16,11 +16,7 @@ Se tiene pensado crear una base de datos con la siguiente informacion:
 
 ### Tablas
 
-**- Login:**  En la tabla Login tendremos el userName, email y la password que nustros usuarios utilizaran para ingresar a la pagina .
-
-**- Usuarios:**  en la tabala usuarios guardaremos la informacion principal de cada uno de los usuarios, como lo son: tipo_documento, nro_documento, foto, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, apodo, edad, ciudad_recidencia, direccion, descripcion_personal.
-
-**- Tipo_documento:** En la tabla tipo_documento tendremos los tipos de documento que los usuarios pueden elegir;
+**- Usuarios:**  en la tabala usuarios guardaremos la informacion principal de cada uno de los usuarios, como lo son: id_numero_telefono, password, foto, nombre completo, apodo, edad, ciudad_recidencia, direccion, descripcion_personal.
 
 **- Pais:** en la tabla pais tendremos los paices que los usuarios pueden elegir como nacionalidad.
 
