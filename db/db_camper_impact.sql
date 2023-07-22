@@ -24,7 +24,7 @@ CREATE TABLE Tipo_reaccion(
     tip_reacc_nombre VARCHAR(45) NOT NULL
 );
 CREATE TABLE Usuario(
-    usu_id INT(12) NOT NULL PRIMARY KEY,
+    usu_id INT UNSIGNED NOT NULL PRIMARY KEY,
     usu_nombre VARCHAR(70) NOT NULL,
     usu_password VARCHAR(12) NOT NULL,
     usu_apodo VARCHAR(45) NOT NULL UNIQUE,
@@ -105,9 +105,9 @@ INSERT INTO Tipo_reaccion (tip_reacc_nombre) VALUES
 
 INSERT INTO Usuario (usu_id, usu_nombre, usu_password, usu_apodo, usu_genero_fk, usu_edad, usu_ciudad_fk, usu_descripcion)
 VALUES
-(323888430, 'Juan Pérez Perez', 'contra123', 'Juanito', 1, 30, 1, 'Hola, soy Juan Pérez y me encanta viajar.'),
-(365542156, 'María Silva Gomez',  'clave456', 'MaryClass', 2, 25, 4, '¡Hola! Soy María, me apasiona la música y la fotografía.'),
-(358472156, 'Alex Smith Corralejo', 'pass789', 'AlexMor', 1, 28, 6, '¡Hola a todos! Soy Alex y estoy explorando nuevos lugares.');
+(3238884307, 'Juan Pérez Perez', 'contra123', 'Juanito', 1, 30, 1, 'Hola, soy Juan Pérez y me encanta viajar.'),
+(3655421548, 'María Silva Gomez',  'clave456', 'MaryClass', 2, 25, 4, '¡Hola! Soy María, me apasiona la música y la fotografía.'),
+(3584721564, 'Alex Smith Corralejo', 'pass789', 'AlexMor', 1, 28, 6, '¡Hola a todos! Soy Alex y estoy explorando nuevos lugares.');
 
 INSERT INTO Post (post_info, post_usuario_fk) VALUES
 ('¡Hermoso día en la playa!', "Juanito"),

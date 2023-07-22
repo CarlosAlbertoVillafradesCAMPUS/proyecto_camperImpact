@@ -2,14 +2,13 @@ import { SignJWT, jwtVerify } from "jose";
 
 export const generateToken = async (req, res, next) => {
 
-
   try {
     const encoder = new TextEncoder();
     const jwtconstructor = new SignJWT(req.body);
     req.body.auth = await jwtconstructor
       .setProtectedHeader({ alg: "HS256", typ: "JWT" })
       .setIssuedAt()
-      .setExpirationTime("30s")
+      .setExpirationTime("30m")
       .sign(encoder.encode(process.env.JWT_PRIVATE_KEY));
     next();
   } catch (error) {
