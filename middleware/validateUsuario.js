@@ -11,7 +11,7 @@ validateUsuario.use(async(req,res,next) => {
         req.body = data;
         next();
     } catch (error) {
-        res.status(error.status).send(error)
+        res.status(400).send(error)
     }
 }) 
 

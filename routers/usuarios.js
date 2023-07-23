@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import mysql from "mysql2";
 import {Router} from "express";
 import validateUsuario from "../middleware/validateUsuario.js";
+import {generateToken, validateToken} from "../middleware/jwt.js"
 
 dotenv.config();
 let storageUsuario = Router();
@@ -13,10 +14,10 @@ storageUsuario.use((req,res,next)=>{
     next()
 })
 
-storageUsuario.get("/:id?", (req,res)=>{ 
-    let sql = (req.params.id)
-    ? [`SELECT usu_id AS "tel", usu_nombre AS "nombre_completo", usu_apodo AS "apodo", usu_genero_fk AS "genero_id", gen_nombre AS "genero", usu_edad AS "edad", usu_ciudad_fk AS "ciudad_id", ciu_nombre AS "ciudad", usu_descripcion AS "descripcion", usu_image AS "image" FROM Usuario INNER JOIN Genero ON usu_genero_fk = gen_id INNER JOIN Ciudad ON usu_ciudad_fk = ciu_id WHERE usu_id = ?`, req.params.id]
-    : [`SELECT usu_id AS "tel", usu_nombre AS "nombre_completo", usu_apodo AS "apodo", usu_genero_fk AS "genero_id", gen_nombre AS "genero", usu_edad AS "edad", usu_ciudad_fk AS "ciudad_id", ciu_nombre AS "ciudad", usu_descripcion AS "descripcion", usu_image AS "image" FROM Usuario INNER JOIN Genero ON usu_genero_fk = gen_id INNER JOIN Ciudad ON usu_ciudad_fk = ciu_id`]
+storageUsuario.get("/", (req,res)=>{ 
+    let sql = (req.query.apodo)
+    ? [`SELECT usu_nombre AS "nombre_completo", usu_apodo AS "apodo", usu_genero_fk AS "genero_id", gen_nombre AS "genero", usu_edad AS "edad", usu_ciudad_fk AS "ciudad_id", ciu_nombre AS "ciudad", usu_descripcion AS "descripcion", usu_image AS "image" FROM Usuario INNER JOIN Genero ON usu_genero_fk = gen_id INNER JOIN Ciudad ON usu_ciudad_fk = ciu_id WHERE usu_apodo = ?`, req.query.apodo]
+    : [`SELECT usu_nombre AS "nombre_completo", usu_apodo AS "apodo", usu_genero_fk AS "genero_id", gen_nombre AS "genero", usu_edad AS "edad", usu_ciudad_fk AS "ciudad_id", ciu_nombre AS "ciudad", usu_descripcion AS "descripcion", usu_image AS "image" FROM Usuario INNER JOIN Genero ON usu_genero_fk = gen_id INNER JOIN Ciudad ON usu_ciudad_fk = ciu_id`]
     con.query(
         ...sql,
         (err,data,fil)=>{
@@ -28,12 +29,16 @@ storageUsuario.get("/:id?", (req,res)=>{
         }
     )
 })
+storageUsuario.get("/tokenPost", generateToken, (req,res) =>{
+    res.send({token: req.body.auth})
+})
 
-storageUsuario.post("/", validateUsuario, (req,res)=>{
+storageUsuario.post("/", validateToken, validateUsuario, (req,res)=>{
   /* {
-     "tel": 3265897549,
+     "tel": 546525,
     "nombre_completo": "Carlos Alberto Villafrades",
-    "apodo": "Villafrades",
+    "password":"Carlos1@",
+    "apodo": "jjahsgasr",
     "genero_id": 1,
     "edad": 22,
     "ciudad_id": 1,

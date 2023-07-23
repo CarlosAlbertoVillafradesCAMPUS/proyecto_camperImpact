@@ -25,10 +25,10 @@ export class dtoUsuario {
 __decorate([
     Expose({ name: "tel" }),
     Transform(({ value }) => {
-        if (Math.floor(value) && typeof value == "number")
+        if (Math.floor(value) && typeof value == 'number')
             return Math.floor(value);
         else
-            throw { status: 400, message: `Error en los parametros de entrada "${value}"` };
+            throw { status: 400, message: `Error en los parametros de entrada: "tel"` };
     }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], dtoUsuario.prototype, "usu_id", void 0);
@@ -38,27 +38,27 @@ __decorate([
         if (/^[A-Z-a-z\s]+$/.test(value))
             return value;
         else
-            throw { status: 400, message: `Error en los parametros de entrada "${value}"` };
+            throw { status: 400, message: `Error en los parametros de entrada: "nombre_completo"` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], dtoUsuario.prototype, "usu_nombre", void 0);
 __decorate([
     Expose({ name: "password" }),
     Transform(({ value }) => {
-        if (/^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ\s,.@]+$/.test(value))
+        if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#/]).{8,12}$/.test(value))
             return value;
         else
-            throw { status: 400, message: `Error en los parametros de entrada "${value}"` };
+            throw { status: 400, message: `Error, La contraseña debe ser minimo de 8 caracteres y maximo de 12. ademas debe incluir almenos una letra Mayuscula, una minusula y alguno de los siguientes caracteres, @, ., #, /` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], dtoUsuario.prototype, "usu_password", void 0);
 __decorate([
     Expose({ name: "apodo" }),
     Transform(({ value }) => {
-        if (/^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ\s,.@]+$/.test(value))
+        if (/^[a-z-A-Z-0-9 áéíóúÁÉÍÓÚñÑüÜ\s,.@]+$/.test(value))
             return value;
         else
-            throw { status: 400, message: `Error en los parametros de entrada "${value}"` };
+            throw { status: 400, message: `Error en los parametros de entrada: "apodo"` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], dtoUsuario.prototype, "usu_apodo", void 0);
@@ -68,7 +68,7 @@ __decorate([
         if (Math.floor(value) && typeof value == "number")
             return Math.floor(value);
         else
-            throw { status: 400, message: `Error en los parametros de entrada "${value}"` };
+            throw { status: 400, message: `Error en los parametros de entrada: "genero_id"` };
     }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], dtoUsuario.prototype, "usu_genero_fk", void 0);
@@ -78,7 +78,7 @@ __decorate([
         if (Math.floor(value) && typeof value == "number")
             return Math.floor(value);
         else
-            throw { status: 400, message: `Error en los parametros de entrada "${value}"` };
+            throw { status: 400, message: `Error en los parametros de entrada: "edad"` };
     }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], dtoUsuario.prototype, "usu_edad", void 0);
@@ -88,7 +88,7 @@ __decorate([
         if (Math.floor(value) && typeof value == "number")
             return Math.floor(value);
         else
-            throw { status: 400, message: `Error en los parametros de entrada "${value}"` };
+            throw { status: 400, message: `Error en los parametros de entrada: "ciudad_id"` };
     }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], dtoUsuario.prototype, "usu_ciudad_fk", void 0);
@@ -98,7 +98,7 @@ __decorate([
         if (/^[\w\s+#-]+$/.test(value) || value === null)
             return value;
         else
-            throw { status: 400, message: `Error en los parametros de entrada "${value}"` };
+            throw { status: 400, message: `Error en los parametros de entrada: "direccion"` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], dtoUsuario.prototype, "usu_direccion", void 0);
@@ -108,7 +108,7 @@ __decorate([
         if (/^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ\s,.@]+$/.test(value))
             return value;
         else
-            throw { status: 400, message: `Error en los parametros de entrada "${value}"` };
+            throw { status: 400, message: `Error en los parametros de entrada: "descripcion"` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], dtoUsuario.prototype, "usu_descripcion", void 0);
@@ -118,7 +118,7 @@ __decorate([
         if (/^[\w\s+#-]+$/.test(value) || value === null)
             return value;
         else
-            throw { status: 400, message: `Error en los parametros de entrada "${value}"` };
+            throw { status: 400, message: `Error en los parametros de entrada: "image"` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], dtoUsuario.prototype, "usu_image", void 0);
