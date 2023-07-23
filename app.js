@@ -8,7 +8,7 @@ dotenv.config();
 const appExpress =  express();
 appExpress.use(express.json());
 appExpress.get("/token", generateToken, (req,res)=>{
-    res.send({token: req.body.auth})
+    res.send({token: req.token})
 })
 appExpress.use("/usuario", validateToken, storageUsuario)
 

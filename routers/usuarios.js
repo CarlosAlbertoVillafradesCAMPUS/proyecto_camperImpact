@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import mysql from "mysql2";
 import {Router} from "express";
 import validateUsuario from "../middleware/validateUsuario.js";
-import {generateToken, validateToken} from "../middleware/jwt.js"
+import {generateToken, validateTokenEndpoints} from "../middleware/jwt.js"
 
 dotenv.config();
 let storageUsuario = Router();
@@ -29,11 +29,8 @@ storageUsuario.get("/", (req,res)=>{
         }
     )
 })
-storageUsuario.get("/tokenPost", generateToken, (req,res) =>{
-    res.send({token: req.body.auth})
-})
 
-storageUsuario.post("/", validateToken, validateUsuario, (req,res)=>{
+storageUsuario.post("/",generateToken, validateTokenEndpoints, validateUsuario, (req,res)=>{
   /* { datos de entrada
      "tel": 3175049475,
     "nombre_completo": "Carlos Alberto Villafrades",
@@ -58,5 +55,6 @@ storageUsuario.post("/", validateToken, validateUsuario, (req,res)=>{
 
     )
 })
+
 
 export default storageUsuario;
