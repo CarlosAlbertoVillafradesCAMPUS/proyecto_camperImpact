@@ -34,11 +34,11 @@ storageUsuario.get("/tokenPost", generateToken, (req,res) =>{
 })
 
 storageUsuario.post("/", validateToken, validateUsuario, (req,res)=>{
-  /* {
-     "tel": 546525,
+  /* { datos de entrada
+     "tel": 3175049475,
     "nombre_completo": "Carlos Alberto Villafrades",
     "password":"Carlos1@",
-    "apodo": "jjahsgasr",
+    "apodo": "ElVilla",
     "genero_id": 1,
     "edad": 22,
     "ciudad_id": 1,
