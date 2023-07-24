@@ -99,5 +99,19 @@ storagePost.get("/usuario/:apodoUsuario", (req,res)=>{
     )
 })
 
+storagePost.get("/popularidad", (req,res)=>{ 
+    con.query(
+        `SELECT post_id AS "id_post" , post_info AS "info", post_image AS "image", post_fecha AS "fecha_post", COUNT(reacc_id) AS total_reacciones FROM Post INNER JOIN Reaccion ON post_id = reacc_post_fk GROUP BY post_id ORDER BY total_reacciones DESC`,
+        (err,data,fil)=>{
+            if (err) {
+               res.status(401).send("Error en la solicitud") 
+            }else{
+                res.send(data)
+            }
+        }
+    )
+})
+
+
 
 export default storagePost;
