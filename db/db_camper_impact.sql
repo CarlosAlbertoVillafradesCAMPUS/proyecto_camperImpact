@@ -1,26 +1,26 @@
 CREATE DATABASE db_camper_impact;
 USE db_camper_impact;
 CREATE TABLE Pais(
-    pai_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    pai_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     pai_nombre VARCHAR(50) NOT NULL
 );
 CREATE TABLE Region(
-    reg_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    reg_pais_fk INT NOT NULL,
+    reg_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    reg_pais_fk INT UNSIGNED NOT NULL,
     reg_nombre VARCHAR(45) NOT NULL
 );
 CREATE TABLE Ciudad(
-    ciu_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    ciu_region_fk INT NOT NULL,
+    ciu_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    ciu_region_fk INT UNSIGNED NOT NULL,
     ciu_nombre VARCHAR(45) NOT NULL
 );
 CREATE TABLE Genero(
-    gen_id INT(2) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    gen_id INT(2) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     gen_nombre VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE Tipo_reaccion(
-    tip_reacc_id INT(2) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    tip_reacc_id INT(2) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     tip_reacc_nombre VARCHAR(45) NOT NULL
 );
 CREATE TABLE Usuario(
@@ -28,31 +28,31 @@ CREATE TABLE Usuario(
     usu_nombre VARCHAR(70) NOT NULL,
     usu_password VARCHAR(12) NOT NULL,
     usu_apodo VARCHAR(45) NOT NULL UNIQUE,
-    usu_genero_fk INT(2) NOT NULL,
-    usu_edad INT(3) NOT NULL,
-    usu_ciudad_fk INT NOT NULL,
+    usu_genero_fk INT(2) UNSIGNED NOT NULL,
+    usu_edad INT(3) UNSIGNED NOT NULL,
+    usu_ciudad_fk INT UNSIGNED NOT NULL,
     usu_direccion VARCHAR(45) NULL,
     usu_descripcion VARCHAR(500) NOT NULL,
     usu_image BLOB NULL
 );
 
 CREATE TABLE Post (
-    post_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    post_id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     post_info  VARCHAR(500) NULL,
     post_image BLOB NULL,
     post_usuario_fk VARCHAR(45) NOT NULL,
     post_fecha DATETIME NOT NULL DEFAULT NOW() 
 );
 CREATE TABLE Comentarios (
-    com_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    com_id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     com_usuario_fk VARCHAR(45) NOT NULL,
     com_info  VARCHAR(500) NOT NULL,
-    com_post_fk INT(10) NOT NULL
+    com_post_fk INT(10) UNSIGNED NOT NULL
     );
 CREATE TABLE Reaccion (
-    reacc_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    reacc_tipo_fk INT(2) NOT NULL,
-    reacc_post_fk INT(10) NOT NULL
+    reacc_id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    reacc_tipo_fk INT(2) UNSIGNED NOT NULL,
+    reacc_post_fk INT(10) UNSIGNED NOT NULL
 );
 /*FOREIGN KEYS Y RELACIONES*/
 
