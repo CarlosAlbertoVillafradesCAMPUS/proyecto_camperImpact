@@ -17,6 +17,11 @@ let estructuras = {
     "info": null,
     "image": null,
     "apodo_usuario": null,
+  },
+  comentarios:{
+    "apodo_usuario": null,
+    "info": null,
+    "post": null,
   }
 }
 
@@ -73,6 +78,11 @@ export const validateTokenEndpoints = async (req, res, next) => {
           break;
         case "/post":
           if (dataTokenKeys.toString() != Object.keys(estructuras.post).toString()) {
+            return res.status(401).send({ message: "Error. en la estructura de entrada", structure: req.body});
+          }
+          break;
+        case "/comentarios":
+          if (dataTokenKeys.toString() != Object.keys(estructuras.comentarios).toString()) {
             return res.status(401).send({ message: "Error. en la estructura de entrada", structure: req.body});
           }
           break;
