@@ -14,6 +14,7 @@ storageUsuario.use((req,res,next)=>{
     next()
 })
 
+//se puede utilizar query ?apodo="" para filtrar por apodo
 storageUsuario.get("/", (req,res)=>{ 
     let sql = (req.query.apodo)
     ? [`SELECT usu_nombre AS "nombre_completo", usu_apodo AS "apodo", usu_genero_fk AS "genero_id", gen_nombre AS "genero", usu_edad AS "edad", usu_ciudad_fk AS "ciudad_id", ciu_nombre AS "ciudad", usu_descripcion AS "descripcion", usu_image AS "image" FROM Usuario INNER JOIN Genero ON usu_genero_fk = gen_id INNER JOIN Ciudad ON usu_ciudad_fk = ciu_id WHERE usu_apodo = ?`, req.query.apodo]
@@ -50,6 +51,38 @@ storageUsuario.post("/",generateToken, validateTokenEndpoints, validateUsuario, 
                res.status(500).send("Error al agregar, revisar parametros") 
             }else{
                 res.send("Agregado con exito")
+            }
+        }
+
+    )
+})
+
+//se debe utilizar query ?apodo=""
+storageUsuario.put("/",generateToken, validateTokenEndpoints, validateUsuario, (req,res)=>{
+      con.query(
+          `UPDATE Usuario SET ? WHERE usu_apodo = ?`,
+          [req.body, req.query.apodo],
+          (err,data,fil)=>{
+              if (err) {
+                 res.status(500).send("Error al modificar, revisar parametros") 
+              }else{
+                  res.send("Modificado con exito")
+              }
+          }
+  
+      )
+  })
+
+  //se debe utilizar query ?apodo=""
+  storageUsuario.delete("/", (req,res)=>{
+    con.query(
+        `DELETE FROM Usuario WHERE usu_apodo = ?`,
+        [req.query.apodo],
+        (err,data,fil)=>{
+            if (err) {
+               res.status(500).send("Error al eliminar, revisar parametros") 
+            }else{
+                res.send("Eliminado con exito")
             }
         }
 
