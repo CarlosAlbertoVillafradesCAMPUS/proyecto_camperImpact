@@ -126,3 +126,4 @@ INSERT INTO Reaccion (reacc_tipo_fk, reacc_post_fk) VALUES
 (1, 2),
 (5, 2),
 (2, 3);
+

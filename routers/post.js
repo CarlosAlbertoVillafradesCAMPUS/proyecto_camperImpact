@@ -82,5 +82,22 @@ storagePost.put("/",generateToken, validateTokenEndpoints, validatePost, (req,re
     )
 })
 
+//ENDPOINTS
+
+//endpoint que me muestra las publiaciones realizadas por un usuarios especifico en orden DES
+
+storagePost.get("/usuario/:apodoUsuario", (req,res)=>{ 
+    con.query(
+        `SELECT post_id AS "id_post", post_info AS "info", post_image AS "image", usu_apodo AS "usuario_apodo", post_fecha AS "fecha_post" FROM Post INNER JOIN Usuario ON post_usuario_fk = usu_apodo WHERE post_usuario_fk = ? ORDER BY post_fecha DESC`, req.params.apodoUsuario,
+        (err,data,fil)=>{
+            if (err) {
+               res.status(401).send("Error en la solicitud") 
+            }else{
+                res.send(data)
+            }
+        }
+    )
+})
+
 
 export default storagePost;
