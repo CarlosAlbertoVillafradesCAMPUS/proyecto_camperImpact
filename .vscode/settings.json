@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "DB",
         "Middleware and Dto",
-        "CRUD"
+        "CRUD",
+        "EndPoint"
     ]
 }
