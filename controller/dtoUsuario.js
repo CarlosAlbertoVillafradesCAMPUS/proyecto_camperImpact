@@ -104,12 +104,6 @@ __decorate([
 ], dtoUsuario.prototype, "usu_direccion", void 0);
 __decorate([
     Expose({ name: "descripcion" }),
-    Transform(({ value }) => {
-        if (/^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ\s,.@]+$/.test(value))
-            return value;
-        else
-            throw { status: 400, message: `Error en los parametros de entrada: "descripcion"` };
-    }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], dtoUsuario.prototype, "usu_descripcion", void 0);
 __decorate([

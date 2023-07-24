@@ -44,8 +44,6 @@ export class dtoUsuario{
     usu_direccion:string;
 
     @Expose({name:"descripcion"})
-    @Transform(({value})=>{if(/^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ\s,.@]+$/.test(value)) return value;
-     else throw {status: 400, message:`Error en los parametros de entrada: "descripcion"`};},{ toClassOnly: true})
     usu_descripcion:string;
 
     @Expose({name:"image"})

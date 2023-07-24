@@ -1,7 +1,7 @@
 import { SignJWT, jwtVerify } from "jose";
 
-let estructuras = [
-  {
+let estructuras = {
+  usuario:{
     "tel": null,
     "nombre_completo": null,
     "password":null,
@@ -12,8 +12,13 @@ let estructuras = [
     "direccion": null,
     "descripcion": null,
     "image": null
+  },
+  post:{
+    "info": null,
+    "image": null,
+    "apodo_usuario": null,
   }
-]
+}
 
 export const generateToken = async (req, res, next) => {
   try {
@@ -59,10 +64,15 @@ export const validateTokenEndpoints = async (req, res, next) => {
     let dataTokenKeys = Object.keys(jwtData.payload)
     dataTokenKeys.pop();
     dataTokenKeys.pop();
-    if (req.method === "POST") {
+    if (req.method === "POST" || req.method === "PUT") {
       switch (req.baseUrl) {
         case "/usuario":
-          if (dataTokenKeys.toString() != Object.keys(estructuras[0]).toString()) {
+          if (dataTokenKeys.toString() != Object.keys(estructuras.usuario).toString()) {
+            return res.status(401).send({ message: "Error. en la estructura de entrada", structure: req.body});
+          }
+          break;
+        case "/post":
+          if (dataTokenKeys.toString() != Object.keys(estructuras.post).toString()) {
             return res.status(401).send({ message: "Error. en la estructura de entrada", structure: req.body});
           }
           break;
