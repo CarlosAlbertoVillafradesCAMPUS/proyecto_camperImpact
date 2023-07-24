@@ -5,6 +5,8 @@ import storageUsuario from "./routers/usuarios.js";
 import storagePost from "./routers/post.js";
 import storageComentarios from "./routers/comentarios.js";
 import storageReacciones from "./routers/reacciones.js";
+import storageTipoReaccion from "./routers/tipoReaccion.js";
+import storageGenero from "./routers/genero.js";
 
 dotenv.config();
 
@@ -17,6 +19,8 @@ appExpress.use("/usuario", validateToken, storageUsuario);
 appExpress.use("/post", validateToken, storagePost);
 appExpress.use("/comentarios", validateToken, storageComentarios);
 appExpress.use("/reaccion", validateToken, storageReacciones);
+appExpress.use("/tipoReaccion", validateToken, storageTipoReaccion);
+appExpress.use("/genero", validateToken, storageGenero);
 
 
 let config = JSON.parse(process.env.MY_CONFIG);
